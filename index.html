@@ -140,7 +140,8 @@ a { color: inherit; }
 
 /* ---------- sections ---------- */
 section.block { padding-block: clamp(72px, 10vw, 140px); border-bottom: 1px solid var(--line); }
-.head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(36px, 5vw, 64px); }
+.head { display: grid; align-items: end; gap: 16px 24px; margin-bottom: clamp(36px, 5vw, 64px); }
+@media (min-width: 760px) { .head { grid-template-columns: minmax(0, 1fr) minmax(0, 42ch); } }
 .head h2 {
   margin: 0;
   font: 800 clamp(44px, 7vw, 104px)/.9 var(--display);
@@ -216,11 +217,12 @@ section.block { padding-block: clamp(72px, 10vw, 140px); border-bottom: 1px soli
 .contact { padding-block: clamp(80px, 12vw, 160px) clamp(40px, 5vw, 64px); }
 .big {
   margin: 0 0 clamp(32px, 4vw, 56px);
-  font: 800 clamp(52px, 11vw, 168px)/.86 var(--display);
-  text-transform: uppercase; text-wrap: balance;
+  font: 800 clamp(44px, 10vw, 160px)/.88 var(--display);
+  text-transform: uppercase;
 }
-.big span { display: inline-block; font-variation-settings: "wdth" 60, "wght" 800; transition: font-variation-settings .7s cubic-bezier(.2,.8,.2,1), color .4s; }
-.big:hover span { font-variation-settings: "wdth" 115, "wght" 850; }
+/* one line per phrase, so stretching on hover never re-wraps the words */
+.big span { display: block; width: fit-content; white-space: nowrap; font-variation-settings: "wdth" 60, "wght" 800; transition: font-variation-settings .7s cubic-bezier(.2,.8,.2,1), color .4s; }
+.big:hover span { font-variation-settings: "wdth" 100, "wght" 850; }
 .big span.accent { color: var(--signal); }
 .reach { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
 .email {
